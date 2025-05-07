@@ -2,3 +2,83 @@ Logify.CLI/bin/Debug/net9.0
 Logify.CLI/obj
 Logify.Core/bin/Debug/net9.0
 Logify.Core/obj
+
+
+# .NET
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Dotnet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider
+.idea/
+
+# User secrets
+secrets.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# others
+*.pidb
+*.swo
+*.swp
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# VS for Mac
+*.userprefs
+
+# JetBrains Rider
+.idea/
+
+# Paket dependency manager
+.paket/
+paket-files/
+
+# Build results
+*.dll
+*.exe
+*.app
+*.dmg
+*.pkg
+*.so
+*.a
+*.lib
+
+# Test results
+TestResults/
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Build directories
+build/
+
+# Temporary
+tmp/
+temp/
+
+# Node (in case frontend gets added later)
+node_modules/
