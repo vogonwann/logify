@@ -30,13 +30,17 @@ jobs:
           cd publish
           tar -czvf logify-linux-x64.tar.gz *
 
+      - name: Prepare binary
+        run: |
+          cp ./publish/Logify.CLI/Logify.CLI ./publish/logify
+
       - name: Package DEB
         run: |
-          fpm -s dir -t deb -n logify -v "${{ github.ref_name }}" ./publish/Logify.CLI/Logify.CLI=/usr/local/bin/logify
+          fpm -s dir -t deb -n logify -v "${{ github.ref_name }}" ./publish/logify=/usr/local/bin/logify
 
       - name: Package RPM
         run: |
-          fpm -s dir -t rpm -n logify -v "${{ github.ref_name }}" ./publish/Logify.CLI/Logify.CLI=/usr/local/bin/logify
+          fpm -s dir -t rpm -n logify -v "${{ github.ref_name }}" ./publish/logify=/usr/local/bin/logify
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
