@@ -32,7 +32,7 @@ jobs:
 
       - name: Prepare binary
         run: |
-          cp ./publish/Logify.CLI/Logify.CLI ./publish/logify
+          cp ./publish/Logify.CLI ./publish/logify
 
       - name: Package DEB
         run: |
