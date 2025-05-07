@@ -32,11 +32,11 @@ jobs:
 
       - name: Package DEB
         run: |
-          fpm -s dir -t deb -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI
+          fpm -s dir -t deb -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI/Logify.CLI
 
       - name: Package RPM
         run: |
-          fpm -s dir -t rpm -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI
+          fpm -s dir -t rpm -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI/Logify.CLI
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
