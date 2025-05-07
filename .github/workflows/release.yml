@@ -1,0 +1,49 @@
+name: Build and Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install dependencies
+        run: sudo gem install --no-document fpm
+
+      - name: Publish CLI
+        run: |
+          dotnet publish Logify.CLI/Logify.CLI.csproj -c Release -r linux-x64 --self-contained true -o publish
+
+      - name: Package TAR.GZ
+        run: |
+          cd publish
+          tar -czvf logify-linux-x64.tar.gz *
+
+      - name: Package DEB
+        run: |
+          fpm -s dir -t deb -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI
+
+      - name: Package RPM
+        run: |
+          fpm -s dir -t rpm -n logify -v "${{ github.ref_name }}" --prefix /usr/local/bin logify=./publish/Logify.CLI
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: logify-packages
+          path: |
+            publish/logify-linux-x64.tar.gz
+            *.deb
+            *.rpm
+
